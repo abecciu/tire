@@ -24,6 +24,10 @@ module Tire
         @value
       end
 
+      def range(field, options={})
+        @value = { :range => { field => options } }
+      end
+
       def boolean(options={}, &block)
         @boolean ||= BooleanQuery.new(options)
         block.arity < 1 ? @boolean.instance_eval(&block) : block.call(@boolean) if block_given?
